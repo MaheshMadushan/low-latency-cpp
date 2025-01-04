@@ -19,7 +19,6 @@ class SpecificCRTP : public CRTP<SpecificCRTP> {
 	__attribute__((always_inline))
 	void actuallyDoSomething() {
 		i++;
-		// std::cout << "SpecificCRTP actually did something" << std::endl;
 	}
 
 };
