@@ -11,3 +11,7 @@
 
 
 ![{CAF12B11-AF96-4514-B96B-567A906FCA2A}](https://github.com/user-attachments/assets/d5c3b982-c99f-4e60-bd7a-44390d1e6b00)
+
+# moving validation out of hot path for low latency trade execution
+![{22AC9E6E-BD56-4B96-A042-A2EED8AAA47C}](https://github.com/user-attachments/assets/9f2afcdb-9d39-4543-8a39-7051bd668eee)
+
