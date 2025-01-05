@@ -1,5 +1,6 @@
 #include <iostream>
 #include "crtp.hpp"
+#include "slowpathremoval.hpp"
 #include "dynPolymorphic.hpp"
 #include <benchmark/benchmark.h>
 #include <chrono> 
@@ -35,6 +36,22 @@ static void BM_DYNAMIC_POLY(benchmark::State& state) {
     sdp->doSomething();
 }
 BENCHMARK(BM_DYNAMIC_POLY);
+
+static void BM_VALIDATION_ON_HOTPATH(benchmark::State& state) {
+	SlowPath* sp = new SlowPath;
+  for (auto _ : state)
+    sp->latencyCriticalActivity();
+}
+// Register the function as a benchmark
+BENCHMARK(BM_VALIDATION_ON_HOTPATH);
+
+// Define another benchmark
+static void BM_OPTIMIZED_HOTPATH(benchmark::State& state) {
+  OptimizedPath* op = new OptimizedPath;
+  for (auto _ : state)
+    op->latencyCriticalActivity();
+}
+BENCHMARK(BM_OPTIMIZED_HOTPATH);
 
 BENCHMARK_MAIN();
 
