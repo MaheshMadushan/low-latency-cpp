@@ -2,6 +2,7 @@
 #include "crtp.hpp"
 #include "slowpathremoval.hpp"
 #include "dynPolymorphic.hpp"
+#include "placementnew.hpp"
 #include <benchmark/benchmark.h>
 #include <chrono> 
 using namespace std::chrono;
@@ -52,6 +53,20 @@ static void BM_OPTIMIZED_HOTPATH(benchmark::State& state) {
     op->latencyCriticalActivity();
 }
 BENCHMARK(BM_OPTIMIZED_HOTPATH);
+
+static void BM_PLACEMENT_NEW(benchmark::State& state) {
+  placementnew* pn = new placementnew;
+  for (auto _ : state)
+    pn->allocate_placement_new();
+}
+BENCHMARK(BM_PLACEMENT_NEW);
+
+static void BM_NEW(benchmark::State& state) {
+  placementnew* pn = new placementnew;
+  for (auto _ : state)
+    pn->allocate_new();
+}
+BENCHMARK(BM_NEW);
 
 BENCHMARK_MAIN();
 
