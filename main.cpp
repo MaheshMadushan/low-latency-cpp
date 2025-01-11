@@ -3,6 +3,7 @@
 #include "slowpathremoval.hpp"
 #include "dynPolymorphic.hpp"
 #include "placementnew.hpp"
+#include "unique_ptr.hpp"
 #include <benchmark/benchmark.h>
 #include <chrono> 
 using namespace std::chrono;
