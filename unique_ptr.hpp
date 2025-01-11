@@ -26,8 +26,12 @@ public:
         m_underlying_ptr = nullptr;
     };
 
-    unique_ptr(const unique_ptr&) = delete;
+    unique_ptr(const unique_ptr&) = delete; // if this deleted unique_ptr(unique_ptr& other) also doesn't works
     unique_ptr& operator=(unique_ptr&) = delete;
+
+    // unique_ptr(unique_ptr& other) {
+
+    // }
 
     unique_ptr(unique_ptr&& other) : m_underlying_ptr(other.m_underlying_ptr) {
         printf("unique_ptr created through move constructor\n");
