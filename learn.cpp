@@ -1,23 +1,30 @@
 #include <iostream>
 #include <utility>
 
-class LearnCopyMoveAssignementConstructors {
-    public:
+class LearnCopyMoveAssignementConstructors
+{
+private:
+    static const int pi = 3.14;
+
+public:
     int some_data;
-    int* some_ptr;
-    LearnCopyMoveAssignementConstructors(int _data, int* ptr) : some_data(_data),some_ptr(ptr) {};
+    int *some_ptr;
+    LearnCopyMoveAssignementConstructors(int _data, int *ptr) : some_data(_data), some_ptr(ptr) {};
     // copy constructor
-    LearnCopyMoveAssignementConstructors(const LearnCopyMoveAssignementConstructors& other) {
+    LearnCopyMoveAssignementConstructors(const LearnCopyMoveAssignementConstructors &other)
+    {
         std::cout << "in const copy constructor" << std::endl;
     }
-    LearnCopyMoveAssignementConstructors(LearnCopyMoveAssignementConstructors& other) { // this gets priority - not const cp ctor
+    LearnCopyMoveAssignementConstructors(LearnCopyMoveAssignementConstructors &other)
+    { // this gets priority - not const cp ctor
         std::cout << "in non-const copy constructor" << std::endl;
     }
     // default copy constructor
     // LearnCopyMoveAssignementConstructors(const LearnCopyMoveAssignementConstructors& other) = delete;
 };
 
-const LearnCopyMoveAssignementConstructors someFunc(const LearnCopyMoveAssignementConstructors a) { // copy constructor used
+const LearnCopyMoveAssignementConstructors someFunc(const LearnCopyMoveAssignementConstructors a)
+{             // copy constructor used
     return a; // const copy constructor used since this is const
 }
 
@@ -27,8 +34,9 @@ const LearnCopyMoveAssignementConstructors someFunc(const LearnCopyMoveAssigneme
 //     return a; // ref returned
 // }
 
-int main() {
-    int* ptr = new int{99};
+int main()
+{
+    int *ptr = new int{99};
     LearnCopyMoveAssignementConstructors a{9, ptr};
     std::cout << "=====================================" << std::endl;
     std::cout << "data in the non const object" << std::endl;
@@ -39,16 +47,15 @@ int main() {
     auto a1_copy = someFunc(a); // uses non const cp ctor
     a1_copy.some_data = 888;
     std::cout << "=====================================" << std::endl;
-    
-    
+
     std::cout << "calling function that is using copy ctor (pass by value) - object is non const" << std::endl;
-    int* ptr_b = new int{88};
+    int *ptr_b = new int{88};
     const LearnCopyMoveAssignementConstructors b{8, ptr_b};
     auto b1 = someFunc(b); // uses const cp ctor
     std::cout << "=====================================" << std::endl;
 
     std::cout << &a << std::endl;
-    auto a_copy = someFunc(a); // if copy ctor deleted just pass by ref, pass by value wouldn't work
+    auto a_copy = someFunc(a);         // if copy ctor deleted just pass by ref, pass by value wouldn't work
     std::cout << &a_copy << std::endl; // same address of a, if some funct returned ref
     // delete a.some_ptr; // invalidates the some_ptr of copies if use default copies
     // a.some_ptr = nullptr;
@@ -56,5 +63,4 @@ int main() {
     std::cout << *b.some_ptr << std::endl; // copies object. if cp ctor = default (just copies data) points to same ptr as source object
     std::cout << a.some_data << std::endl;
     std::cout << *a.some_ptr << std::endl;
-
 }
