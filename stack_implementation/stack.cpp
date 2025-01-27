@@ -1,5 +1,12 @@
 #include <iostream>
 
+class SomeClass {
+    public:
+    SomeClass() {std::cout << "SomeClass" << std::endl;};
+
+    // void operator>>()
+
+};
 template <typename T, size_t N>
 class stack
 {
@@ -50,17 +57,17 @@ public:
 
 int main()
 {
-    stack<int, 5> int_stack;
-    int_stack.push(100);
-    int_stack.push(10);
-    int_stack.push(100);
-    int_stack.push(10000000);
-    int_stack.push(10);
+    stack<SomeClass, 5> int_stack;
+    int_stack.push(SomeClass());
+    int_stack.push(SomeClass());
+    int_stack.push(SomeClass());
+    int_stack.push(SomeClass());
+    int_stack.push(SomeClass());
     // int_stack.push(1); // throws
 
     for (size_t i = 0; i < 5; i++)
     {
-        std::cout << int_stack.pop() << std::endl;
+        std::cout << typeid(int_stack.pop()).name() << std::endl;
     }
     
 
