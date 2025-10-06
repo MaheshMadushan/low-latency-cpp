@@ -15,3 +15,9 @@
 # moving validation out of hot path for low latency trade execution
 ![{22AC9E6E-BD56-4B96-A042-A2EED8AAA47C}](https://github.com/user-attachments/assets/9f2afcdb-9d39-4543-8a39-7051bd668eee)
 
+# effect of inlining
+- not inlined
+<img width="1792" height="744" alt="image" src="https://github.com/user-attachments/assets/f4f8c253-f086-4b41-b255-0a7247fb22c0" />
+
+- inlined
+- <img width="1792" height="744" alt="image" src="https://github.com/user-attachments/assets/b95eb499-2c44-461d-a07e-9dc39cdf1246" />
